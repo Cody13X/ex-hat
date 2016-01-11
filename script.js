@@ -6,7 +6,7 @@ $(function() {
       "Marc","Nadège","Ryad","Simon","Adel","Mohammed",
       "Sarah","Yannic","Yannick"];
     //duplication de students
-    var tab2 = students.slice();
+    var pool = students.slice();
 
     this.teams  = function(nb) {
       //duplication de students
@@ -30,10 +30,14 @@ $(function() {
     this.chance = function(nb) {
       var tab = [];
       for (var i = 0; i < nb; i++) {
-        var pos = Math.floor(Math.random() * tab2.length);
-        tab.push(tab2[pos]);
-        tab2.splice(pos, 1);
+        var pos = Math.floor(Math.random() * pool.length);
+        tab.push(pool[pos]);
+        //suppression de l'élément par tirage
+        pool.splice(pos, 1);
       }
+      //recharge pool pour le prochain tirage
+      pool = students.slice();
+
       return tab;
     }
   };
@@ -52,10 +56,7 @@ $(function() {
     if(e.which == 13) { // KeyCode de la touche entrée
       var res = h.teams(nb);
       $(".resultat").val(res);
-      alert(text);
       this.value = '';
     }
   });
-  /*var tab = h.teams(3);
-  h.chance(2);*/
 })
