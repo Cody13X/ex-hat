@@ -12,13 +12,15 @@ $(function() {
       //duplication de students
       var studentsC = students.slice();
       var tab = [];
+      //Tant que le tableau n'est pas vide
       while(studentsC.length > 0) {
         if(studentsC.length < nb)
           nb = studentsC.length;
 
         var subTab = [];
         for (var i = 0; i < nb; i++) {
-          var pos = Math.floor(Math.random() * studentsC.length);            subTab.push(studentsC[pos]);
+          //Element au hasard de studentsC
+          var pos = Math.floor(Math.random() * studentsC.length); subTab.push(studentsC[pos]);
           //suppression de l'élément en position pos
           studentsC.splice(pos, 1);
         }
